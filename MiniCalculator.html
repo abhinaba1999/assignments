@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Calculator</title>
+</head>
+<body>
+    <div>
+        <input id="1stnumber" type="number" placeholder="enter 1st number">
+        <input id="2ndnumber" type="number" placeholder="enter 2st number">
+    </div>
+    <div>
+        <button onclick="add()">Add</button>
+        <button onclick="Subtract()">Subtract</button>
+        <button onclick="Multiply()">Multiply</button>
+        <button onclick="Divide()">Divide</button>
+    </div>
+</body>
+</html>
+<script>
+    let firstnumber=document.getElementById("1stnumber")
+    let secnumber=document.getElementById("2ndnumber");
+    function add(){
+    let temp=+firstnumber.value + +secnumber.value;
+    alert(temp);
+    }
+    function Subtract(){
+        let temp=+firstnumber.value - +secnumber.value;
+    alert(temp);
+    }
+    function Multiply(){
+        let temp=+firstnumber.value * +secnumber.value;
+    alert(temp);
+    }
+    function Divide(){
+        let temp=+firstnumber.value / +secnumber.value;
+    alert(temp);
+    }
+</script>
