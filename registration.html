@@ -29,30 +29,27 @@
             let name=document.getElementById("name")
             let onclickName=document.getElementById("dName")
 			// Show filled name inside h1
-            onclickName.innerText=name.value;
+            onclickName.innerText=onclickName.innerText+":- "+name.value;
 		}
-
 		function showGender() {
             let gender=document.getElementById("gender")
             let onclickgender=document.getElementById("dGender")
-			// Show the selected gender inside h2 
-            gender.addEventListener("change", (event) => {
-            onclickgender.textContent = `You like ${event.target.value}`;
-        });
+			dGender.innerText=onclickgender.innerText+":- "+gender.value;
+			
 		}
 
 		function showEmail() {
-            
+            let email=document.getElementById("email")
             let onclickemail=document.getElementById("dEmail")
 			// Show the filled email inside h3
-            onclickemail.innerText=email.value;
+            onclickemail.innerText=onclickemail.innerText+":- "+email.value;
 		}
 
 		function showMobile() {
             let mobile=document.getElementById("mobile")
             let onclickmobile=document.getElementById("dMobile")
 			// Show the filled mobile inside h4
-            onclickmobile.innerText=mobile.value;
+            onclickmobile.innerText=onclickmobile.innerText+":- "+mobile.value;
 		}
 
 		function resetForm() {
@@ -73,10 +70,10 @@
             let onclickemail=document.getElementById("dEmail")
             let onclickmobile=document.getElementById("dMobile")
 			// Reset all the headings (h1, h2, h3, h4) to blank values
-            onclickName.innerText="NAME"
-            onclickgender.innerText="GENDER";
-            onclickemail.innerText="EMAIL";
-            onclickmobile.innerText="MIBILE"
+            onclickName.innerText=""
+            onclickgender.innerText="";
+            onclickemail.innerText="";
+            onclickmobile.innerText=""
 		}
 	</script>
 </body>
