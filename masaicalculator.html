@@ -112,88 +112,137 @@
 </body>
 </html>
 <script>
-     let keypadButton = document.querySelectorAll(".keypad") // array
-
+/*
+let keypadButton = document.querySelectorAll(".keypad") // array
 let operatorButton = document.querySelectorAll(".operator") // array
 let equal = document.getElementById("equal");
-let heading = document.getElementById("display")
+let display = document.getElementById("display")
 console.log(keypadButton.length)
 // first no  after operator we have second no.
-
-let firstNumber = "";
-let secondNumber = "";
-let IsFirstNumber = true;
-let operators = "";
+let input1="";
+let input2="";
+let operator=operatorButton.innerText;
+let flag=true;
 let clear=document.querySelector(".clear");
 let backspace=document.querySelector(".backspace");
 backspace.addEventListener("click",function(){
     if(heading.innerText.length!=0){
         heading.innerText=heading.innerText.slice(0,-1)
-       firstNumber= firstNumber.slice(0,-1);
-       secondNumber=secondNumber.slice(0,-1);
+       input1= input1.slice(0,-1);
+       input2=input2.slice(0,-1);
     }
    
 })
 clear.addEventListener("click",function(){
-    heading.innerText="";
-    firstNumber="";
-    secondNumber="";
+    display.innerText="";
+    input1="";
+    input2="";
 })
 
-equal.addEventListener("click",function()
-{
-    if(heading.innerText!=undefined){
-    firstNumber=heading.innerText
-    secondNumber="";
-    heading.innerText = calculate(firstNumber,secondNumber,operators);
-}
-heading.innerText = calculate(firstNumber,secondNumber,operators);
+for(let i=0;i<keypadButton.length;i++){
+    keypadButton[i].addEventListener("click",function(){
+        if(flag==true){
+     input1+=keypadButton.innerText
+     display.innerText=input1;
+    }
+    else{
+        input2+=keypadButton.innerText;
+        display.innerText=input2
+    }
 })
-
-
-for(let i = 0; i<keypadButton.length; i++)
-{
-    keypadButton[i].addEventListener("click",function()
-    {
-        if(IsFirstNumber == true)
-        {
-            firstNumber += keypadButton[i].innerText; // concatenation
-       heading.innerText = firstNumber;
-        }
-        else{
-            secondNumber += keypadButton[i].innerText; // concatenation
-          heading.innerText = secondNumber;
-        }
-       
+}
+for(let i=0;i<operator.length;i++){
+    operator[i].addEventListener("click",function(){
+        operator=operator.innerText;
+        flag=false;
     })
 }
-
-
-for(let i = 0; i<operatorButton.length; i++)
-{
-    operatorButton[i].addEventListener("click",function()
-    {
-       IsFirstNumber = false;
-       operators = operatorButton[i].innerText
-
-    })
-}
-
-
-function calculate(firstNumber,secondNumber,operators)
-{
-    switch(operators)
-    {
-        case "+" :
-            return Number(firstNumber) + Number(secondNumber);
-
-            case "-" :
-            return Number(firstNumber) - Number(secondNumber);
-            case "*" :
-            return Number(firstNumber) * Number(secondNumber);
-            case "/" :
-            return Number(firstNumber) / Number(secondNumber)
-            
+function click(input1,operator,input2){
+    if(operator=="+"){
+        return eval(input1+operator+input2);
+    }
+    else if(operator=="-"){
+        return eval(input1+operator+input2);
+    }
+    else if(operator=="*"){
+        return eval(input1+operator+input2);
+    }
+    else if(operator=="/"){
+        return eval(input1+operator+input2);
     }
 }
+equal.addEventListener("click",function(){
+  display.innerText=click(input1,operator,input2)
+})
+*/
+
+let keypadButtons = document.querySelectorAll(".keypad");
+let operatorButtons = document.querySelectorAll(".operator");
+let equal = document.getElementById("equal");
+let display = document.getElementById("display");
+let input1 = "";
+let input2 = "";
+let operator = "";
+let flag = true;
+let clear = document.querySelector(".clear");
+let backspace = document.querySelector(".backspace");
+
+backspace.addEventListener("click", function() {
+    if (display.innerText.length !== 0) {
+        display.innerText = display.innerText.slice(0, -1);
+        if (flag) {
+            input1 = input1.slice(0, -1);
+        } else {
+            input2 = input2.slice(0, -1);
+        }
+    }
+});
+
+clear.addEventListener("click", function() {
+    display.innerText = "";
+    input1 = "";
+    input2 = "";
+    operator = "";
+    flag = true;
+});
+
+keypadButtons.forEach(function(button) {
+    button.addEventListener("click", function() {
+        if (flag) {
+            input1 += this.innerText;
+            display.innerText = input1;
+        } else {
+            input2 += this.innerText;
+            display.innerText = input2;
+        }
+    });
+});
+
+operatorButtons.forEach(function(button) {
+    button.addEventListener("click", function() {
+        operator = button.innerText;
+        flag = false;
+    });
+});
+
+function calculate(input1, operator, input2) {
+    if (operator === "+") {
+        return eval(input1 + operator + input2);
+    } else if (operator === "-") {
+        return eval(input1 + operator + input2);
+    } else if (operator === "*") {
+        return eval(input1 + operator + input2);
+    } else if (operator === "/") {
+        if (input2 === "0") {
+            return "Error";
+        }
+        return eval(input1 + operator + input2);
+    }
+    return "Error";
+}
+
+equal.addEventListener("click", function() {
+    display.innerText = calculate(input1, operator, input2);
+});
+
 </script>
