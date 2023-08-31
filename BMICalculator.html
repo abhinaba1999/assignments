@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+</head>
+<body>
+    <div>
+        <h3>Check Your BMI</h3>
+        <p>Enter your weight and height below to check your BMI</p>
+        <p>Put your weight in here (KG)</p>
+        <input id="input1" type="number">
+    </div>
+    <div>
+        <p>And your height in here(CM)</p>
+        <input id="input2" type="number"><br><br>
+        <button>Calculate BMI</button>
+        <h2 id="display"></h2>
+    </div>
+</body>
+</html>
+<script>
+   let display=document.getElementById("display")
+   let button=document.querySelector("button");
+   let input1=document.getElementById("input1")
+
+   let input2=document.getElementById("input2");
+   console.log(input1,input2)
+   button.addEventListener("click",function(){
+    if(input1.value==""||input1.value==undefined||input1.value==NaN){
+        alert("Please enter your weight");
+        display.innerText="Please enter your weight";
+    }
+    else if(input2.value==""||input2.value==undefined||input2.value==NaN){
+        alert("Please enter your height ")
+        display.innerText="Please enter your height";
+    }
+    else{
+    let BMI=(Number(input2.value)/(Number(input1.value)*Number(input1.value)/10000)).toFixed(2);
+   display.innerText=click(BMI);
+   }
+})
+   function click(BMI){
+    if(BMI<=18.4){
+    return "Your BMI is "+BMI+"which means You are UnderWeight"
+   }
+   else if(BMI >= 18.5 && BMI <= 24.9){
+    return "Your BMI is "+BMI+"which means You are Normal Weight"
+   }
+   else if(BMI >= 25 && BMI <= 29.9){
+    return "Your BMI is "+BMI+"which means You are Overweight "
+   }
+   else if(BMI >= 30){
+    return "Your BMI is "+BMI+"which means You are Obese "
+   }
+   }
+  
+</script>

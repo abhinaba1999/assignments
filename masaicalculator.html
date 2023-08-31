@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MASAI CALCULATOR GRID</title>
+    <style>
+        h2{
+        text-align: center;
+        margin: 30px ;
+        font-size: 50px;
+        font-weight: bold;
+        color: #00807F;
+        }
+    #button{
+        display: grid;
+        grid-template-columns:repeat(4,70px);
+        grid-template-rows: repeat(4,70px);
+        gap: 15px;
+        justify-content: center;
+        margin: 10px;
+        align-items: center;
+
+    }
+    #parent{
+        text-align: center;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        height: 430px;
+        width: 430px;
+        justify-content: center;
+        margin: auto;
+        padding-botton:30%
+    }
+    input{
+    margin: 20px;
+    height: 30px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border: 0;
+    }
+    #button > button{
+    height: 50px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 6px;
+    text-size-adjust: 6px;
+    padding-top: 27%;
+    align-items: center;
+    padding-bottom: 20%;
+    font-size: 20px;
+    font-weight: bold;
+    }
+    #button :nth-child(4){
+        background-color: #000000;
+        color: #FFDEDE;
+    }
+    #button :nth-child(8){
+        background-color: #000000;
+        color:#FFDEDE;
+    }
+    #button :nth-child(12){
+        background-color: #000000;
+        color:#FFDEDE;
+         font-size: 20px;
+        font-weight: bold;
+    }
+    #button :nth-child(13){
+        background-color: #FF0000;
+        color:#FFDEDE;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    #button :nth-child(15){
+        background-color: #000000;
+        color:#FFDEDE;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    #button :nth-child(16){
+        background-color: #000000;
+        color:#FFDEDE;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>Masai Calculator</h2>
+    </div>
+    <div id="parent">
+        <div id="input">
+            <div><h1 id="display"></h1></div>
+        </div>
+        <div id="button">
+            <button class="keypad">1</button>
+            <button class="keypad">2</button>
+            <button class="keypad">3</button>
+            <button class="operator">+</button>
+            <button class="keypad">4</button>
+            <button class="keypad">5</button>
+            <button class="keypad">6</button>
+            <button class="operator">-</button>
+            <button class="keypad">7</button>
+            <button class="keypad">8</button>
+            <button class="keypad">9</button>
+            <button class="backspace">X</button>
+            <button class="clear">C</button>
+            <button class="keypad">0</button>
+            <button id="equal">=</button>
+            <button class="operator">/</button>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+     let keypadButton = document.querySelectorAll(".keypad") // array
+
+let operatorButton = document.querySelectorAll(".operator") // array
+let equal = document.getElementById("equal");
+let heading = document.getElementById("display")
+console.log(keypadButton.length)
+// first no  after operator we have second no.
+
+let firstNumber = "";
+let secondNumber = "";
+let IsFirstNumber = true;
+let operators = "";
+let clear=document.querySelector(".clear");
+let backspace=document.querySelector(".backspace");
+backspace.addEventListener("click",function(){
+    if(heading.innerText.length!=0){
+        heading.innerText=heading.innerText.slice(0,-1)
+       firstNumber= firstNumber.slice(0,-1);
+       secondNumber=secondNumber.slice(0,-1);
+    }
+   
+})
+clear.addEventListener("click",function(){
+    heading.innerText="";
+    firstNumber="";
+    secondNumber="";
+})
+
+equal.addEventListener("click",function()
+{
+    if(heading.innerText!=undefined){
+    firstNumber=heading.innerText
+    secondNumber="";
+    heading.innerText = calculate(firstNumber,secondNumber,operators);
+}
+heading.innerText = calculate(firstNumber,secondNumber,operators);
+})
+
+
+for(let i = 0; i<keypadButton.length; i++)
+{
+    keypadButton[i].addEventListener("click",function()
+    {
+        if(IsFirstNumber == true)
+        {
+            firstNumber += keypadButton[i].innerText; // concatenation
+       heading.innerText = firstNumber;
+        }
+        else{
+            secondNumber += keypadButton[i].innerText; // concatenation
+          heading.innerText = secondNumber;
+        }
+       
+    })
+}
+
+
+for(let i = 0; i<operatorButton.length; i++)
+{
+    operatorButton[i].addEventListener("click",function()
+    {
+       IsFirstNumber = false;
+       operators = operatorButton[i].innerText
+
+    })
+}
+
+
+function calculate(firstNumber,secondNumber,operators)
+{
+    switch(operators)
+    {
+        case "+" :
+            return Number(firstNumber) + Number(secondNumber);
+
+            case "-" :
+            return Number(firstNumber) - Number(secondNumber);
+            case "*" :
+            return Number(firstNumber) * Number(secondNumber);
+            case "/" :
+            return Number(firstNumber) / Number(secondNumber)
+            
+    }
+}
+</script>
