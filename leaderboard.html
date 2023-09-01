@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>leader board</title>
+</head>
+<style>
+ #parent_min_max{
+height: auto;
+ width: auto;
+ display: flex;
+ justify-content: space-between;
+
+ 
+ }
+ 
+ #parent{
+    height: auto;
+    width: 30%;
+    border: 2px solid gray;
+    margin: auto;
+ }
+ #parent_min_max >div{
+    height: auto;
+    width: 20%;
+    
+    display: flex;
+    flex-direction: column;
+    padding: auto;
+    text-align: center;
+ }
+ h2{
+    height: 90%;
+    width: auto;
+    
+    background-color: brown;
+ }
+ #display{
+ height: 30%;
+ width: 40%;
+ background-color: brown;
+ text-align: center;
+ margin: auto;
+ }
+ #number{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(4,1fr);
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+ }
+ h4{
+    height: 30%;
+    width: 30%;
+    background-color: brown;
+    margin: auto;
+    padding: 20%;
+    text-align: center;
+ }
+#btnmain{
+   margin: auto;
+   padding: 10%;background-color: aqua;
+   height: 5%;
+   width: 25%;
+   border-radius: 10%;
+}
+button{
+   margin: auto;
+   padding: auto;
+   background-color: aqua;
+   border: transparent;
+   color: antiquewhite;
+   font-size: large;
+   text-align: center;
+   font-style: bold;
+}
+
+</style>
+<body>
+   <div id="parent">
+    <div id="parent_min_max">
+        <div>
+            <h2 id="min">43</h2>
+            <p>MIN</p>
+        </div>
+        <div>
+            <h2 id="max">2019</h2>
+            <p>MAX</p>
+        </div>
+    </div>
+    <div style="text-align: center;"><p>SCORE</p></div>
+    <div id="display"><h3>#</h3></div>
+    <div id="number">
+        <h4 class="numbervalue">1</h4>
+        <h4 class="numbervalue">2</h4>
+        <h4 class="numbervalue">3</h4>
+        <h4 class="numbervalue">4</h4>
+        <h4 class="numbervalue">5</h4>
+        <h4 class="numbervalue">6</h4>
+        <h4 class="numbervalue">7</h4>
+        <h4 class="numbervalue">8</h4>
+        <h4 class="numbervalue">9</h4>
+    </div>
+    <div><h4 class="numbervalue">0</h4></div>
+      <div id="btnmain">
+        <button>Submit</button>
+      </div>
+</body>
+</html>
+<script>
+let numberButtons = document.querySelectorAll(".numbervalue");
+let display = document.getElementsByTagName("h2");
+let displayNumber = document.getElementById("display");
+let Submit=document.getElementById("btnmain")
+let min =document.getElementById("min");
+let max = document.getElementById("max");
+let value="";
+numberButtons.forEach(function(button) {
+   button.addEventListener("click",function(){
+      value+=button.innerText;
+      let temp="";
+      temp+=value;
+      displayNumber.innerText=temp;
+      Submit.addEventListener("click",function(){
+   if(Number(displayNumber.innerText)<Number(min.innerText)){
+      min.innerText=displayNumber.innerText;
+      console.log(min.innerText)
+   }
+   else if (Number(displayNumber.innerText)<Number(max.innerText)){
+      max.innerText=displayNumber.innerText
+   }
+   displayNumber.innerText="";
+})
+})
+})
+// Submit.addEventListener("click",function(){
+//    if(Number(displayNumber.innerText)<Number(min.innerText)){
+//       min.innerText=displayNumber.innerText;
+//    }
+//    else if (Number(displayNumber.innerText)<Number(max.innerText)){
+//       max.innerText=displayNumber.innerText
+//    }
+//    displayNumber.innerText="";
+// })
+
+</script>
