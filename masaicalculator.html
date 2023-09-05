@@ -91,158 +91,82 @@
             <div><h1 id="display"></h1></div>
         </div>
         <div id="button">
-            <button class="keypad">1</button>
-            <button class="keypad">2</button>
-            <button class="keypad">3</button>
-            <button class="operator">+</button>
-            <button class="keypad">4</button>
-            <button class="keypad">5</button>
-            <button class="keypad">6</button>
-            <button class="operator">-</button>
-            <button class="keypad">7</button>
-            <button class="keypad">8</button>
-            <button class="keypad">9</button>
-            <button class="backspace">X</button>
+            <button class="keypad" value="1">1</button>
+            <button class="keypad" value="2">2</button>
+            <button class="keypad" value="3">3</button>
+            <button class="operator" value="+">+</button>
+            <button class="keypad" value="4">4</button>
+            <button class="keypad" value="5">5</button>
+            <button class="keypad" value="6">6</button>
+            <button class="operator" value="-">-</button>
+            <button class="keypad" value="7">7</button>
+            <button class="keypad" value="8">8</button>
+            <button class="keypad" value="9">9</button>
+            <button class="operator" value="*">X</button>
             <button class="clear">C</button>
-            <button class="keypad">0</button>
+            <button class="keypad" value="0">0</button>
             <button id="equal">=</button>
-            <button class="operator">/</button>
+            <button class="operator" value="/">/</button>
         </div>
     </div>
 </body>
 </html>
 <script>
-/*
-let keypadButton = document.querySelectorAll(".keypad") // array
-let operatorButton = document.querySelectorAll(".operator") // array
-let equal = document.getElementById("equal");
-let display = document.getElementById("display")
-console.log(keypadButton.length)
-// first no  after operator we have second no.
-let input1="";
-let input2="";
-let operator=operatorButton.innerText;
-let flag=true;
-let clear=document.querySelector(".clear");
-let backspace=document.querySelector(".backspace");
-backspace.addEventListener("click",function(){
-    if(heading.innerText.length!=0){
-        heading.innerText=heading.innerText.slice(0,-1)
-       input1= input1.slice(0,-1);
-       input2=input2.slice(0,-1);
-    }
-   
-})
-clear.addEventListener("click",function(){
-    display.innerText="";
-    input1="";
-    input2="";
-})
-
-for(let i=0;i<keypadButton.length;i++){
-    keypadButton[i].addEventListener("click",function(){
-        if(flag==true){
-     input1+=keypadButton.innerText
-     display.innerText=input1;
-    }
-    else{
-        input2+=keypadButton.innerText;
-        display.innerText=input2
-    }
-})
-}
-for(let i=0;i<operator.length;i++){
-    operator[i].addEventListener("click",function(){
-        operator=operator.innerText;
-        flag=false;
-    })
-}
-function click(input1,operator,input2){
-    if(operator=="+"){
-        return eval(input1+operator+input2);
-    }
-    else if(operator=="-"){
-        return eval(input1+operator+input2);
-    }
-    else if(operator=="*"){
-        return eval(input1+operator+input2);
-    }
-    else if(operator=="/"){
-        return eval(input1+operator+input2);
-    }
-}
-equal.addEventListener("click",function(){
-  display.innerText=click(input1,operator,input2)
-})
-*/
-
 let keypadButtons = document.querySelectorAll(".keypad");
 let operatorButtons = document.querySelectorAll(".operator");
 let equal = document.getElementById("equal");
-let display = document.getElementById("display");
+let display1 = document.getElementById("display");
 let input1 = "";
-let input2 = "";
-let operator = "";
-let flag = true;
 let clear = document.querySelector(".clear");
 let backspace = document.querySelector(".backspace");
-
-backspace.addEventListener("click", function() {
-    if (display.innerText.length !== 0) {
-        display.innerText = display.innerText.slice(0, -1);
-        if (flag) {
-            input1 = input1.slice(0, -1);
-        } else {
-            input2 = input2.slice(0, -1);
-        }
-    }
-});
-
-clear.addEventListener("click", function() {
-    display.innerText = "";
-    input1 = "";
-    input2 = "";
-    operator = "";
-    flag = true;
-});
-
-keypadButtons.forEach(function(button) {
-    button.addEventListener("click", function() {
-        if (flag) {
-            input1 += this.innerText;
-            display.innerText = input1;
-        } else {
-            input2 += this.innerText;
-            display.innerText = input2;
-        }
+// it is function for keypadButtons
+keypadButtons.forEach((ele)=>{
+    ele.addEventListener("click",function(){
+        input1+=ele.value;
+        display(input1);
+    })
+    //clear function for keypadButton
+        clear.addEventListener("click",function(){
+        display1.innerText="";
+        input1=""
     });
-});
-
-operatorButtons.forEach(function(button) {
-    button.addEventListener("click", function() {
-        operator = button.innerText;
-        flag = false;
-    });
-});
-
-function calculate(input1, operator, input2) {
-    if (operator === "+") {
-        return eval(input1 + operator + input2);
-    } else if (operator === "-") {
-        return eval(input1 + operator + input2);
-    } else if (operator === "*") {
-        return eval(input1 + operator + input2);
-    } else if (operator === "/") {
-        if (input2 === "0") {
-            return "Error";
+   
+})
+//it is function for operatorButtons
+operatorButtons.forEach((ele)=>{
+    ele.addEventListener("click",function(){
+        input1+=ele.value;
+        for(let i=0;i<input1.length;i++){
+            if(input1[i].length==1){
+                display(input1);
+            }
+            else if(input1[i]!=input1[i+1]){
+                display(input1);
+            }
+            else{
+                display(alert("please chack your operator value"))
+            }
         }
-        return eval(input1 + operator + input2);
-    }
-    return "Error";
+        // clear function for keypadButton
+        clear.addEventListener("click",function(){
+        display1.innerText="";
+        input1=""
+    });
+       
+    })
+
+})
+// it is for displaying all values;
+function display(input1){
+    equal.addEventListener("click",function(){
+        
+        display1.innerText=eval(input1);
+        input1="";
+    })
+   
+    display1.innerText=input1;
 }
 
-equal.addEventListener("click", function() {
-    display.innerText = calculate(input1, operator, input2);
-});
+
 
 </script>
