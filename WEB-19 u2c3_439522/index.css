@@ -79,6 +79,16 @@
     width: 100%;
     font-size: 20px;
   }
+  input[value="Filter"] {
+    background-color: #2b619e;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 20px;
+  }
   
   input[type="submit"]:hover {
     background-color: #3973b6;

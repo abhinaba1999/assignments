@@ -1,6 +1,6 @@
 // fill in javascript code here
 
-let myfunction=document.querySelector("form");
+let myfunction=document.querySelector("#parent_all");
 let employeeName=document.querySelector("#name");
 let emid=document.getElementById("employeeID");
 let department=document.querySelector("#department");
@@ -9,8 +9,8 @@ let expemail=document.querySelector("#email");
 let expmobile=document.querySelector("#mbl");
 let tbody=document.querySelector("tbody");
 let arr1=[];
-myfunction.addEventListener("submit",function(arr){
-    arr.preventDefault();
+myfunction.addEventListener("submit",function(event){
+    event.preventDefault();
     let temp={
         name:employeeName.value,
         employeeId: emid.value,
@@ -51,12 +51,23 @@ function display(arr1){
         del(ele,index);
     
      })
+     let parent_dep=document.querySelector("#parent_dep");
+     let department2=document.querySelector("#department2");
+     parent_dep.addEventListener("submit",function(a){
+              a.preventDefault();
+        let depvalue=department2.value;
+
+        let filtered =arr1.filter((ele)=>ele.department===depvalue);
+        display(filtered);
+     })
+     
      td8.append(button1);
      tr.append(td1,td2,td3,td4,td5,td6,td7,td8);
      tbody.append(tr);
     })
     
 }
+
 function valueapp(exp){
    if(Number(exp)>5){
     return "Senior"
@@ -76,76 +87,4 @@ function del(ele,index){
      display(arr1);
      
   }
-// let name = document.getElementById('name')
-// let id = document.getElementById("employeeID")
-// let dep = document.getElementById("department")
-// let exp = document.getElementById("exp");
-// let mail = document.getElementById("email")
-// let phone = document.getElementById('mbl')
-// let form = document.querySelector("form")
-// let body = document.querySelector('tbody')
-// let alldata = [];
-
-// form.addEventListener('submit', function(e){
-//     e.preventDefault()
-
-//     let data = {
-//         id : alldata.length,
-//         name : name.value,
-//         Eid : id.value,
-//         dep : dep.value,
-//         exp : exp.value,
-//         mail : mail.value,
-//         phone : phone.value,
-//     }
-//     alldata.push(data)
-   
-    
-//     display()
-// })
-
-
-// function display(){
-//     body.innerHTML = '';
-//     alldata.map((ele,index)=>{
-//         const tr = document.createElement('tr')
-//         const tname = document.createElement('td')
-//         const tid = document.createElement('td')
-//         const tdep = document.createElement('td')
-//         const texp = document.createElement('td')
-//         const tmail = document.createElement('td')
-//         const tphone = document.createElement('td')
-//         const tform = document.createElement('td')
-//         const del = document.createElement('button')
-    
-//         tname.innerText = ele.name
-//         tid.innerText = ele.Eid
-//         tdep.innerText = ele.dep
-//         texp.innerText = ele.exp
-//         tmail.innerText = ele.mail
-//         tphone.innerText = ele.phone
-//          if(texp.innerText>=5){
-//           tform.innerText = 'Senior'
-//          }else if(texp.innerText>2&&ele.exp<5){
-//           tform.innerText = 'Junior'
-//          }else if(texp.innerText<2){
-//           tform.innerText = 'Fresher'
-//          }
-//         del.innerText = "Delete"
-    
-//         tr.append(tname,tid,tdep,texp,tmail,tphone,tform,del)
-//         body.append(tr);
-    
-//         del.addEventListener('click', function(){
-//           deletefun(ele,index);
-            
-//         });
-
-//     });
-
-//    function deletefun(ele,index){
-//     alldata.splice(index,1)
-//     // console.log(alldata)
-//       display()
-//     };
-// };
+  
