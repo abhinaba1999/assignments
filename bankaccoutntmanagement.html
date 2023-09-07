@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+   function BankAccount(accountNumber,name,type,balance,active){
+         this.accountNumber=accountNumber;
+         this.name=name;
+         this.type=type;
+         this.balance=balance;
+         this.active=active;
+   }
+   BankAccount.prototype.deposit=function(amount){
+    if(amount>0){
+        this.balance +=amount;
+        console.log("`You diposit "+amount+ " and your balance is "+this.balance)
+    }
+    else{
+        console.log(`Aomunt update invalid`)
+    }
+   }
+   BankAccount.prototype.withdraw=function(amount){
+    if((this.active==true)&&(amount>0)&&(this.balance>amount)){
+        this.balance-=amount;
+        console.log(`You withdrow ${amount} and yor balance is ${ths.balance}`);
+    }
+    else{
+        console.log(`invalid withdrowal amount`)
+    }
+   }
+   let account1= new BankAccount( 123,"abhi","saving",1200,true);
+   let account2= new BankAccount( 123,"naba","saving",1300,false);
+   let account3= new BankAccount( 123,"afsar","saving",1500,true);
+   let account4= new BankAccount( 123,"miraj","saving",1800,true);
+   let account5= new BankAccount( 123,"yash","saving",5500,true);
+   let arr=[account1,account2,account3,account4,account5];
+   console.log(arr);
+  console.log(account1);
+  function checkBalance(account){
+    console.log(`Your account balance is ${account.balance}`);
+  }
+  function isActive(account){
+    if(account.active==true){
+        console.log(`Your account status is Active`)
+    }
+    else{
+        console.log( `Your account status is inActive`)
+    }
+    
+
+  }
+  function getTotalBalance (arr){
+    let total=0;
+    for(let key of arr){
+
+        if(key.active==true){
+         total+=key.balance
+        }
+    }
+    return total;
+  }
+  isActive(account2)
+  checkBalance(account1)
+  console.log(getTotalBalance(arr))
+</script>
