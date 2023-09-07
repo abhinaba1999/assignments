@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Sotre</title>
+    <style>
+ 
+div {
+  display: flex;
+  justify-content: space-around;
+}
+form {
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 30%;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  padding: 30px;
+}
+
+
+
+label {
+  margin: auto;
+  padding: auto;
+  font-size: 20px;
+}
+
+table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 60%;
+  margin: auto;
+  margin-top: 50px;
+  text-align: center;
+}
+
+table td,
+table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+table tr:nth-child(even) {
+  background-color: #8caacf;
+}
+
+table tr:hover {
+  background-color: #ddd;
+}
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #0468aa;
+  color: white;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+input[type="text"],
+select,
+textarea,input[type="number"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  resize: vertical;
+}
+
+input[type="submit"] {
+  background-color: #2b619e;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 20px;
+}
+
+input[type="submit"]:hover {
+  background-color: #3973b6;
+}
+
+h1 {
+  text-align: center;
+  font-size: 50px;
+  text-transform: uppercase;
+  font-family: monospace;
+  color: #2b619e;
+  text-decoration: underline;
+}
+
+ </style>
+</head>
+<body>
+    <!-- Dont make any changes here -->
+    <h1>Book Sotre </h1>
+
+    <div>
+      <table> 
+        <!-- Dont change order of columns -->
+        <thead>
+          <tr>
+            <th>Book's title</th>
+            <th>Author's Name</th>
+            <th>genre</th>
+            <th>price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- ******* Append your output here ********* -->
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
+<script>
+    function booksote(book ,authors){
+        this.book=book;
+        this.authors=authors;
+    }
+   function books(name,birthYear,nationality ){
+        this.name=name;
+        this.birthYear=birthYear;
+        this.nationality=nationality;
+    }
+    function author(title,author ,genre,price ){
+        this.title=title;
+        this.author=author;
+        this.genre=genre;
+        this.price=price;
+    }
+    let book1= new books("afser",1998,"Indian")
+    let book2= new books("yash",1999,"Indian")
+
+    let author1= new author( "new one","B. k. varun","drama",1200);
+    let author2= new author( "new two","B. k. himansu","songs",5000);
+    let arr1=[book1,book2];
+    let arr2=[author1,author2]
+    let detals= new booksote(arr1,arr2);
+    function getBookInfo(title,authorName,genre,price){
+      let tbody=document.querySelector("tbody");
+      let tr=document.createElement("tr")
+      let td2=document.createElement("td")
+      let td3=document.createElement("td")
+      let td4=document.createElement("td")
+      let td5=document.createElement("td")
+      
+      td2.innerText=title;
+      td3.innerText=authorName;
+      td4.innerText=genre;
+      td5.innerText=price;
+
+      tr.append(td2,td3,td4,td5);
+      tbody.append(tr);
+
+
+    }
+    for(let i=0;i<arr2.length;i++){
+      getBookInfo(arr2[i].title,arr2[i].author,arr2[i].genre,arr2[i].price);
+    }
+    
+   console.log(detals)
+
+</script>
