@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function simulation_game(brand,model,speed,fuelType){
+            let obj={}
+            Object.setPrototypeOf(obj,simulation_game.prototype);
+            obj.brand=brand;
+            obj.model=model;
+            obj.speed=speed;
+            obj.fuelType=fuelType;
+            return obj;
+
+        }
+        simulation_game.prototype.accelerate=function(ispeed){
+           this.speed+=ispeed;
+          console.log(this.speed);
+        }
+        
+        
+        simulation_game.prototype.break=function(value){
+           this.speed-=value;
+           console.log(this.speed);
+        }
+        simulation_game.prototype.refuel=function(){
+            console.log(`this vehicle is refueling`);
+
+        }
+        function numberOfWheels (brand,model,speed,fuelType,numberOfwheelss){
+            let obj=simulation_game(brand,model,speed,fuelType);
+            Object.setPrototypeOf(obj,numberOfWheels.prototype);
+            obj.numberOfwheelss=numberOfwheelss;
+            return obj
+        }
+        numberOfWheels.prototype.honk=function(){
+            console.log("honk.. honk..")
+        }
+        Object.setPrototypeOf(numberOfWheels.prototype,simulation_game.prototype);
+        // this is airplane function;
+
+        function airplane(brand,model,speed,fuelType,numberOfEngines ,hasLandingGear){
+            let obj=simulation_game(brand,model,speed,fuelType);
+            Object.setPrototypeOf(obj,airplane.prototype);
+            obj.numberOfEngines=numberOfEngines;
+            obj.hasLandingGear=hasLandingGear;
+            return obj;
+        }
+        airplane.prototype.takeOff=function(){
+            console.log(`airplane is taking off`);
+        }
+        Object.setPrototypeOf(airplane.prototype,simulation_game.prototype);
+        var simulation_game_ans=simulation_game("Honda","activa 6g",180,"patrol");
+        var numberOfWheels_ans=numberOfWheels("Hero","suzuki 165", 120, "patrol2",4);
+        var airplane_ans=airplane("Go air","11692", 1700, "Diesel",4, "Yes");
+        console.log(simulation_game_ans);
+        console.log(numberOfWheels_ans)
+        console.log(airplane_ans)
+        // simulation_game_ans.accelerate(10);
+        // simulation_game_ans.break(20);
+        simulation_game_ans.refuel();
+        airplane_ans.takeOff();
+        numberOfWheels_ans.honk();
+        airplane_ans.accelerate(10)
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 1 st exemple</title>
+</head>
+<body>
+    
+    <script>
+    function iPhoneGen1(ASIN, color, display, camera) {
+  let obj = {}
+  Object.setPrototypeOf(obj, iPhoneGen1.prototype) // set the prototype of the object that we are returning here to iPhoneGen1 prototype;
+
+  obj.ASIN = ASIN
+  obj.color = color
+  obj.display = display
+  obj.camera = camera
+
+  return obj
+}
+
+iPhoneGen1.prototype.dial = function () {
+  console.log("tring.. tring...")
+  console.log(this.ASIN);
+}
+
+iPhoneGen1.prototype.sendMessage = function () {
+  console.log("Sending message...")
+}
+
+iPhoneGen1.prototype.cameraClick = function () {
+  console.log("Camera clicked")
+}
+
+// we want to create second generation iphone now which will have some of the stuff inherited from first generation iphone and some of the stuff will be new;
+function iPhoneGen2(ASIN, color, display, camera, bluetooth) {
+  let obj = iPhoneGen1(ASIN, color, display, camera)
+
+  Object.setPrototypeOf(obj, iPhoneGen2.prototype)
+  obj.bluetooth = bluetooth
+
+  return obj
+}
+
+Object.setPrototypeOf(iPhoneGen2.prototype, iPhoneGen1.prototype) // set prototype of iPhoneGen2 to iPhoneGen1 prototype ( Iphone gen2 prototype object will have Iphone gen 1 object as it's prototype meaning some of the prop/methods of iphone gen 1 will be shared by iphoneGen2 by using this prototype chain )
+
+iPhoneGen2.prototype.connectToBT = function () { // new properties/methods added 
+  console.log("Bluetooh connected")
+//   console.log(this.ASIN)
+}
+
+iPhoneGen2.prototype.disConnectFromBT = function () {
+  console.log("Bluetooh disconnected")
+}
+function iphoneGen3(ASIN,color,display,camera,bluetooth){
+    let obj=iPhoneGen2(ASIN, color, display, camera, bluetooth)
+    Object.setPrototypeOf(obj,iphoneGen3.prototype);
+    return obj;
+
+}
+Object.setPrototypeOf(iphoneGen3.prototype,iPhoneGen1.prototype);
+
+let iPhoneSecondGenFirst = iPhoneGen2("NVIOF284", "green", "6.5", "5MP", "1.4")
+let iphonefirstGen=iPhoneGen1("E45efHf","white",`4.5 mp`);
+// iPhoneSecondGenFirst.disConnectFromBT();
+// console.log(iphonefirstGen);
+ let iphonethardgen=iphoneGen3("HTM3HHT","BLACK",4.5,"15 MP",3.2);
+//  console.log(iphonethardgen)
+// console.log(iPhoneSecondGenFirst)
+// iPhoneSecondGenFirst.cameraClick()
+iPhoneSecondGenFirst.connectToBT();
+iphonefirstGen.dial()
+    </script>
+</body>
+</html>
