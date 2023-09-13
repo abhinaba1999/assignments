@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automobile</title>
+</head>
+<body>
+    <script>
+        
+        function automobile(body,chassis,engine,fule,cooling_system){
+            let ans={};
+            Object.create(ans)
+            ans.body=body;
+            ans.chassis=chassis;
+            ans.engine=engine;
+            ans.fule=fule;
+            ans.cooling_system=cooling_system;
+            return ans;
+        }
+        let obj=Object.create(automobile);
+        obj.body="Fait 600";
+        obj.chassis="4 core";
+        obj.engine="1200cc";
+        obj.fule="patrol";
+        obj.cooling_system=true;
+    
+        // let ans=obj("Fait 600","4 core","1200cc","patrol",true);
+        console.log(obj);
+        
+    </script>
+</body>
+</html>
