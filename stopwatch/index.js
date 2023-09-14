@@ -1,8 +1,9 @@
 let seconds=0;
 let minutes=0;
 let hours=0;
-let displaytime=document.getElementById("display")
+
 let timer=null;
+let displaytime=document.getElementById("display");
 
 
 function stopwatch(){
