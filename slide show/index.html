@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slide show</title>
+    <style>
+        
+        body{
+            background: #191919;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            width: 40%;
+            margin: auto;
+            margin-top: 10%;
+        }
+        h2{
+            color: aliceblue;
+        }
+      
+      #h2parent{
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0;
+
+      }
+      #Button{
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0;
+      }
+      #Button button{
+       background-color: aqua;
+       border: none;
+       box-shadow: indianred;
+       border-radius: 1px;
+       height: 30px;
+       width: 30%;
+      }
+      #h2parent button{
+        background-color: aqua;
+       border: none;
+       box-shadow: indianred;
+       border-radius: 1px;
+       height: 30px;
+       width: 30%;
+      }
+    </style>
+</head>
+<body>
+   <div>
+    <div id="h2parent">
+        <button onclick="back()">Back</button>
+        <button onclick="next()">Next</button>
+    </div>
+    <div>
+        <div>
+            <img id="image" src="a.jpeg" alt="download1">
+        </div>
+    </div>
+    <div id="Button">
+        <button onclick="start()">Start</button>
+        <button onclick="stope()">Stop</button>
+    </div>
+   </div>
+    <script>
+      let image =document.getElementById("image");
+      let images=[
+        "a.jpeg",
+        "b.jpeg",
+        "c.jpeg",
+        "d.jpeg",
+        "e.jpeg",
+        "f.jpeg",
+        "g.jpeg",
+        "h.jpeg",
+        "i.jpeg",
+        "j.jpeg",
+        "k.jpeg",
+        "l.jpeg",
+        "m.jpeg",
+        "n.jpeg",
+        "o.jpeg",
+        "p.jpeg",
+        "q.jpeg",
+        "r.jpeg",
+        "s.jpeg",
+        "t.jpeg"
+      ]
+      
+     let currentIndex=0;
+      function start() {
+   text=setInterval(() => {
+    image.src = images[currentIndex];
+    currentIndex = (currentIndex + 1) % images.length;
+  }, 1000);
+}
+function stope(){
+    clearInterval(text);
+}
+function back(){
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+  image.src = images[currentIndex];
+}
+function next(){
+    image.src = images[currentIndex];
+    currentIndex = (currentIndex + 1) % images.length;
+}
+    </script>
+
+</body>
+</html>
