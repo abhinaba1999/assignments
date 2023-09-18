@@ -21,11 +21,12 @@ button.addEventListener("click",function(){
               div.setAttribute("id","display_content")
               div.append(orderId,newimage,createheading,createparagraph)
               display.append(div);
+              checkbox_element[i].checked=false;
                 
             }
         }
 
 
-    }, 1000);
+    }, Math.floor(Math.random()*10000)+1000);
 })
 
