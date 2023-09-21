@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fatch and display data</title>
+    <style>
+        #display div{
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            padding: 20px;
+            border-radius: 20px;
+            background: transparent;
+
+           
+            
+        }
+        #display{
+            width: 60%;
+            margin: auto;
+            padding: auto;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-template-rows: auto;
+            gap: 60px;
+            
+        }
+        #display img{
+            display: block;
+            margin: auto;
+        }
+        body{
+          background-image: url("https://i.stack.imgur.com/jGlzr.png");
+          background-repeat: no-repeat;
+        }
+        #display h2{
+            color: white;
+        }
+        #button{
+            background: transparent;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div ><button id="button"> show data</button></div>
+   
+        <div id="display">
+
+        </div>
+  
+    
+   
+    <script>
+        document.getElementById("button").addEventListener("click",function(){
+        fetch("https://reqres.in/api/users").then(function(ele){
+            ele.json().then(function(data){
+                for(let i=0;i<data.data.length;i++){
+                    displaydata(data.data[i]);
+                }
+                
+            })
+        }).catch(function(ele){
+            console.log(ele)
+        })
+       
+    })
+        function displaydata(ele){
+         console.log(ele)
+         let image=document.createElement("img")
+         let h1=document.createElement("h2")
+         let first_name=document.createElement("h2")
+         let last_name=document.createElement("h2")
+         let div=document.createElement("div")
+          
+        //  ele.forEach(function(ele,index) {
+            image.src=ele.avatar
+            console.log(ele)
+           
+            h1.textContent=`Email : ${ele.email}`
+            first_name.textContent=`First name : ${ele.first_name}`
+            last_name.textContent=`First name : ${ele.last_name}`
+     
+
+
+           div.append(image,h1,first_name,last_name)
+
+            
+            document.getElementById("display").append(div)
+            console.log(ele.email)
+        //  });
+            
+         
+
+  
+
+        }
+        
+   
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fatch api</title>
+</head>
+<body>
+    
+    <script>
+        fetch("https://reqres.in/api/users?page=2").then(function(ele){
+              ele.json().then(function(data){
+                console.log(data.data)
+                for(let i=0;i<data.data.length;i++){
+                    console.log(data.data[i].first_name)
+                    console.log("------------------------")
+                    console.log(data.data[i].last_name)
+
+                }
+              })
+        }).catch(Error => console.log(Error) )
+    </script>
+</body>
+</html>

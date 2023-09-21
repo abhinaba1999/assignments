@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+     #table{
+        height: auto;
+        width: 100%;
+       /* border: 1px solid red; */
+       display: block;
+        justify-content: center;
+        align-items: center;
+     }
+     body{
+        height: auto;
+        width: 30%;
+        margin: auto;
+        /* border: 1px solid red; */
+        
+     }
+    </style>
+</head>
+<body>
+    <div>
+        <form >
+            
+            <br> <br>
+            <label for="name"> Enter Your Name:</label><br><br>
+            <input type="text" required id="name"><br><br>
+            <label for="name"> Enter Your age:</label><br><br>
+            <input type="number" required id="age"><br><br>
+            <input type="submit">
+            
+        </form>
+        <button id="showdata">show data</button>
+    </div>
+    <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+      
+      </tbody>
+
+
+
+    <script>
+    let table=document.querySelector("form")
+     let tname=document.getElementById("name")
+     let tage=document.getElementById("age")
+     let showdata=document.getElementById("showdata");
+
+     table.addEventListener("submit",function(a){
+        a.preventDefault()
+
+        localStorage.setItem("name",tname.value);
+        localStorage.setItem("age",tage.value);
+     })
+
+     showdata.addEventListener("click",function(){
+        let tr=document.createElement("tr");
+        let td1=document.createElement("td");
+        let td2=document.createElement("td");
+        let namevalue=localStorage.getItem("name")
+        let agevalue=localStorage.getItem("age")
+        td1.innerText=namevalue;
+        td2.innerText=agevalue;
+        tr.append(td1,td2)
+        document.querySelector("tbody").append(tr);
+     })
+    </script>
+</body>
+</html>
