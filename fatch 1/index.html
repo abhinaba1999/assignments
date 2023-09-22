@@ -36,6 +36,7 @@
         </form>
         <button id="showdata">show data</button>
     </div>
+  <table>
     <thead>
         <tr>
           <th>Name</th>
@@ -43,17 +44,24 @@
           
         </tr>
       </thead>
-      <tbody>
+      <tbody id="tbody1">
       
       </tbody>
+  </table>
+// array (LS) - value
+let newarr =LS.getItem(key).push(new User);
+LS.setItem(Key,newarr;)
+
+</body>
+</html>
 
 
-
-    <script>
+<script>
     let table=document.querySelector("form")
      let tname=document.getElementById("name")
      let tage=document.getElementById("age")
      let showdata=document.getElementById("showdata");
+     let tbody=document.getElementById("tbody1")
 
      table.addEventListener("submit",function(a){
         a.preventDefault()
@@ -68,11 +76,13 @@
         let td2=document.createElement("td");
         let namevalue=localStorage.getItem("name")
         let agevalue=localStorage.getItem("age")
-        td1.innerText=namevalue;
-        td2.innerText=agevalue;
+        td1.textContent=namevalue;
+        td2.textContent=agevalue;
         tr.append(td1,td2)
-        document.querySelector("tbody").append(tr);
+        console.log(namevalue,agevalue)
+        
+        // document.getElementById("tbody1").append(tr);
+        tbody.append(tr)
+        console.log(tbody)
      })
     </script>
-</body>
-</html>
