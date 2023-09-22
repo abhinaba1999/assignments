@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>search engin</title>
+    <style>
+        #display{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-template-rows: auto;
+            gap: 80px;
+        }
+        body{
+            width: 80%;
+            margin: auto;
+            background-color: azure;
+            margin-top: 50px;
+            padding: 20px;
+        }
+        #display div img{
+            display: block;
+            width: 40%;
+            margin: auto;
+            padding: auto;
+            margin-top: 20px;
+        }
+        #display div{
+            border: 1px solid black;
+            margin: 20px 0;
+        }
+        #display div h2,#display div p{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form >
+        <label for="search">Please enter your movie Name :</label><br><br>
+        <input type="text" id="search">
+        <input type="submit">
+    </form>
+    
+    <div id="display"></div>
+</body>
+</html>
+<script>
+    let flag=true;
+    let input=document.getElementById("search");
+    
+    let form=document.querySelector("form")
+   
+    form.addEventListener("submit",function(a){
+        a.preventDefault();
+
+
+    let input=document.getElementById("search");
+     let name1=input.value;
+     console.log(name1)
+
+
+    fetch("https://www.omdbapi.com/?i=tt3896198&apikey=92d55748&s="+name1)
+    .then(function(ele){
+        return ele.json()
+    }).then(function(data){
+        
+
+        displaydata(data.Search)();
+        
+        // console.log(data)
+    }).catch(function(err){
+        console.log(err);
+    })
+
+
+    })
+   
+   
+    function displaydata(data){
+        if(flag==true){
+            for(let i=0;i<data.length;i++){
+       let div=document.createElement("div");
+      let img=document.createElement("img");
+      let title=document.createElement("h2")
+      let Year=document.createElement("p")
+      let imdbID=document.createElement("p")
+      let Type=document.createElement("p")
+      img.src=data[i].Poster;
+      title.textContent= "Title :- "+  data[i].Title;
+      Year.textContent="Year :- "+ data[i].Year;
+      imdbID.textContent="Imdbid :- "+data[i].imdbID;
+      Type.textContent="Type :- "+ data[i].Type;
+      
+
+      div.append(img,title,Year,imdbID,Type);
+      document.getElementById("display").append(div);
+      
+      flag=false;
+        }
+       
+        
+        }
+       else{
+        let button=document.createElement("button");
+      button.textContent="cleck me";
+      button.onclick=function(){
+        window.location.reload()
+        flag=true;
+      }
+      form.append(button);
+       }
+
+    }
+
+
+   
+</script>
