@@ -10,6 +10,7 @@ myform.addEventListener("submit",(arr)=>{
     
         
 const mypromice= new Promise(function(resolve,reject){
+    let flag;
     let mainobj=[
         {fname:"Abhinaba",lname:"Jana",mobile:9831206232,balance:5000},
         {fname:"Afsar",lname:"Md",mobile:8235449893,balance:10000},
@@ -18,8 +19,18 @@ const mypromice= new Promise(function(resolve,reject){
         {fname:"Biswajit",lname:"Shit",mobile:8016426793,balance:50000},
         {fname:"Varat",lname:"gulla",mobile:7430978213,balance:60000},
          ]
+
+            display.innerHTML=null;
+            for(let i=0; i<mainobj.length; i++){
+                if(first_name.value==mainobj[i].fname && last_name.value==mainobj[i].lname && mobile_number.value==mainobj[i].mobile && Number(withdrowal_amount.value)<=mainobj[i].balance){
+                    flag=true
+                }
+                if(flag){
+                    break;
+                }
+            }
          
-         if(first_name.value!="" && last_name.value!="" && mobile_number.value!="" && withdrowal_amount.value!=""){
+         if(flag==true){
             // resolve()
             console.log(first_name.value=="");
             resolve(mainobj,first_name.value,last_name.value,mobile_number.value,withdrowal_amount.value);

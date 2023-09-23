@@ -78,6 +78,7 @@
    
     function displaydata(data){
         if(flag==true){
+            document.getElementById("display").innerHTML=null;
             for(let i=0;i<data.length;i++){
        let div=document.createElement("div");
       let img=document.createElement("img");
@@ -91,11 +92,11 @@
       imdbID.textContent="Imdbid :- "+data[i].imdbID;
       Type.textContent="Type :- "+ data[i].Type;
       
-
+      
       div.append(img,title,Year,imdbID,Type);
       document.getElementById("display").append(div);
       
-      flag=false;
+      flag=true;
         }
        
         
@@ -103,11 +104,11 @@
        else{
         let button=document.createElement("button");
       button.textContent="cleck me";
-      button.onclick=function(){
-        window.location.reload()
-        flag=true;
-      }
-      form.append(button);
+    //   button.onclick=function(){
+    //     window.location.reload()
+    //     flag=true;
+    //   }();
+    //   form.append(button);
        }
 
     }
