@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lower case</title>
+</head>
+<body>
+    <div id="input">
+      input= ["MA", "SA", "I", "SCH", "OOL"];
+    </div>
+    <div id="output">
+        
+    </div>
+    
+    
+</body>
+</html>
+<script>
+    let input=["MA", "SA", "I", "SCH", "OOL"];
+    let mainfunction=(value)=>{
+        let upper="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        let lower="abcdefghijklmnopqrstuvwxyz";
+        for(let i=0;i<upper.length;i++){
+            if(upper[i]==value){
+                return lower[i];
+            }
+            else if(lower[i]==value){
+                return upper[i];
+            }
+        }
+    }
+    let displayvalue=(ele)=>{
+        let bag="";
+        for(let i=0;i<ele.length;i++){
+           bag+= mainfunction(ele[i]);
+        }
+        return bag
+    }
+    let maping=(ele)=>{
+        return ele.map( ele => {
+            return displayvalue(ele);
+        })
+    }
+    document.getElementById("output").innerHTML=`output=[${maping(input)}]`
+    console.log(maping(input))
+</script>

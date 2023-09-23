@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>class countdown </title>
+</head>
+<body>
+    <div id="display"></div>
+    <div>
+        <input type="button" value="start" id="start">
+        <input type="button" value="reset" id="reset">
+        <input type="button" value="increment " id="increment">
+        <input type="button" value="decrement" id="decrement">
+        
+
+    </div>
+</body>
+</html>
+<script>
+    let startbutton=document.getElementById("start")
+    let resetbutton=document.getElementById("reset")
+    let incrementbutton=document.getElementById("increment")
+    let decrementbutton=document.getElementById("decrement")
+
+    
+    let timer;
+   class starttimer{
+     constructor(countdown){
+        this.countdown=countdown;
+     }
+     get displayvalue(){
+
+     }
+    starttime=()=>{
+       if(!timer){
+        timer=setInterval(()=>{
+            this.countdown++;
+        document.getElementById("display").innerHTML= this.countdown;
+        document.getElementById("start").value="stop";
+           
+        },1000)
+       }
+       else{
+        this.stop();
+       }        
+    }
+   
+    stop(){
+    clearInterval(timer);
+    timer=null;
+    document.getElementById("start").value="start";
+    }
+    reset=()=>{
+        this.stop();
+        document.getElementById("display").innerHTML= 0;
+        this.countdown=0;
+        document.getElementById("start").value="start";
+    }
+    increment =()=>{
+        this.countdown++;
+        document.getElementById("display").innerHTML= this.countdown;
+        document.getElementById("start").value="start";
+    }
+    decrement=()=>{
+        this.countdown--;
+        document.getElementById("display").innerHTML= this.countdown;
+        document.getElementById("start").value="start";
+    }
+   }
+
+
+
+   let value= new starttimer(0)
+   document.getElementById("start").addEventListener("click",value.starttime)
+   resetbutton.addEventListener("click",value.reset)
+   incrementbutton.addEventListener("click",value.increment);
+   decrementbutton.addEventListener("click",value.decrement);
+</script>
