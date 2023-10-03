@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es 6</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+   class CustomArray {
+  constructor() {
+    this.items = Array.from(arguments);
+  }
+
+  push(element) {
+    this.items.push(element);
+  }
+
+  pop() {
+    return this.items.pop();
+  }
+
+  top() {
+    return this.items[this.items.length - 1];
+  }
+
+  print() {
+    console.log(`[${this.items.join(',')}]`);
+  }
+
+  printReverse() {
+    console.log(`[${this.items.slice().reverse().join(',')}]`);
+  }
+
+  get size() {
+    return this.items.length;
+  }
+}
+
+
+let arr=[1, 2, 3, 4]
+const customArray = new CustomArray(...arr);
+customArray.push(5);
+customArray.print();
+console.log(customArray.pop());
+customArray.print(); 
+console.log(customArray.top());
+customArray.printReverse(); 
+console.log(customArray.size);
+console.log(customArray)
+
+</script>
