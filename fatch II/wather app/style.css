@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital@1&family=Roboto:wght@500&family=Young+Serif&display=swap');
+
+#display_parent{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    background:transparent;
+    padding: 2%;
+    border-radius: 20px;
+}
+#display_parent div{
+    width: auto;
+}
+body{
+    background-color: antiquewhite;
+    font-family: 'Courier Prime', monospace;
+font-family: 'Roboto', sans-serif;
+font-family: 'Young Serif', serif;
+background-image: url("https://wallpapers.com/images/hd/head-village-art-5auutbke9k49vvfp.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+}
+#searchandsubmit{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2%;
+
+}
+form{
+    justify-content: center;
+    margin: 6% 0;
+}
+#display_weather{
+    width: 80%;
+    /* border:  1px solid red; */
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 30px;
+    border-radius: 30px;
+    border: none;
+    background-color: white;
+}
+#display_weather:nth-child(1){
+    font-style: bold;
+    font-size: 20px;
+    /* color: white; */
+}
+
+#maps{
+    border-radius: 40px;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background: white;
+}
