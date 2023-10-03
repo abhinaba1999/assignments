@@ -10,46 +10,62 @@
 </body>
 </html>
 <script>
-   class CustomArray {
-  constructor() {
-    this.items = Array.from(arguments);
+ class CustomArray {
+  constructor(...args) {
+    this.items = args;
+    this.size = args.length;
   }
 
   push(element) {
-    this.items.push(element);
+    this.items[this.size] = element;
+    this.size++;
   }
 
   pop() {
-    return this.items.pop();
+    if (this.size === 0) return undefined;
+    const poppedElement = this.items[this.size - 1];
+    delete this.items[--this.size];
+    return poppedElement;
   }
 
   top() {
-    return this.items[this.items.length - 1];
+    return this.items[this.size - 1];
   }
 
   print() {
-    console.log(`[${this.items.join(',')}]`);
+    let result = '[';
+    for (let i = 0; i < this.size; i++) {
+      result += this.items[i];
+      if (i < this.size - 1) {
+        result += ',';
+      }
+    }
+    result += ']';
+    console.log(result);
   }
 
   printReverse() {
-    console.log(`[${this.items.slice().reverse().join(',')}]`);
-  }
-
-  get size() {
-    return this.items.length;
+    let result = '[';
+    for (let i = this.size - 1; i >= 0; i--) {
+      result += this.items[i];
+      if (i > 0) {
+        result += ',';
+      }
+    }
+    result += ']';
+    console.log(result);
   }
 }
 
 
-let arr=[1, 2, 3, 4]
-const customArray = new CustomArray(...arr);
+const customArray = new CustomArray(1, 2, 3, 4);
 customArray.push(5);
-customArray.print();
-console.log(customArray.pop());
 customArray.print(); 
-console.log(customArray.top());
+customArray.pop();
+customArray.print(); 
+console.log(customArray.top()); 
 customArray.printReverse(); 
-console.log(customArray.size);
-console.log(customArray)
+console.log(customArray.size); 
+
 
 </script>
