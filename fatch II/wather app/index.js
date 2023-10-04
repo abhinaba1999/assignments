@@ -60,7 +60,7 @@ function displayMydata(data){
    
    location.innerHTML=`${data.name}, ${data.sys.country}`
    temp.innerHTML=`${data.main.temp} &#8451 `;
-   felslike_and_all.innerHTML=`${data.main.feels_like} *C ${data.weather[0].main}. ${data.weather[0].description}`
+   felslike_and_all.innerHTML=`${data.main.feels_like} &#8451 ${data.weather[0].main}. ${data.weather[0].description}`
 
 
    

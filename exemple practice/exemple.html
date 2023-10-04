@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    async function fun1(){
+        let ele= await fetch('https://timeapi.io/api/Time/current/coordinate?latitude=40.7127281&longitude=-74.0060152');
+        let data=await ele.json();
+        console.log(data);
+    }
+    fun1();
+</script>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+        
+        #search-container {
+            margin-top: 50px;
+        }
+        
+        #search {
+            padding: 10px;
+            font-size: 16px;
+        }
+        
+        #btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        
+        #display {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+      
+
+        
+    </style>
+</head>
+<body>
+    <input type="text" id="search">
+    <button id="btn">Search</button>
+    <div id="display">
+                <div id="details">
+                    
+
+                    
+                </div>
+
+                <div id="map">
+
+                    <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=florida&t=&z=8&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://123movies-i.net">123movies-i.net</a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style><a href="https://www.embedgooglemap.net">google maps embed</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div></div>
+
+                </div>
+        
+           
+        
+        
+         
+
+
+    
+    </div>
+    
+</body>
+
+</html>
+<script>
+    let dis = document.getElementById('display')
+    let city = document.getElementById('search')
+    let btn = document.getElementById('btn')
+    let map = document.getElementById('map')
+    let details = document.getElementById('details')
+  
+
+    
+
+    btn.addEventListener('click', function(){
+        const name = city.value;
+        latLon(name)
+    })
+
+
+
+    async function latLon(n){
+
+        map.innerHTML = <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=${n}&t=&z=8&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://123movies-i.net">123movies-i.net</a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style><a href="https://www.embedgooglemap.net">google maps embed</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div></div>
+
+        
+        let res = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${n}&limit=1&appid=02cf19a154e64474a9ea0e931216838e`)
+        let data = await res.json()
+
+        const lat = data[0].lat;
+        const lon = data[0].lon
+       
+        weather(lat,lon)
+    }
+
+    async function weather(lat,lon){
+
+        let res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=02cf19a154e64474a9ea0e931216838e`)
+        let data = await res.json()
+
+        console.log(data)
+        console.log(lat,lon)
+
+       
+
+        details.innerHTML =  ` 
+        
+        <h1>${data.name}, ${data.sys.country} </h1>
+        <p>${ timer(data.timezone)}</p>
+        <h1>${Math.round(data.main.temp - 273.15)} &#8451;</h1>
+        <h3>Feels like ${Math.round(data.main.feels_like - 273.15)} &#8451;   ${data.weather[0].description}</h3>
+        <p>clouds: ${data.clouds.all}% </p>
+       <p>Humadity: ${data.main.humidity}% </p>
+       <p>Visibility: ${data.visibility/1000}km </p>
+       <p>Wind speed: ${data.wind.speed}m/s</p>
+       <p>Wind Direction: ${text(data.wind.deg)}</p>
+
+
+        `  
+
+        console.log('city:' +data.name)
+        console.log('city:' +data.main.temp+ ` &#8451;`)
+        console.log('feels like ' + data.main.feels_like + ` &#8451;`)
+
+
+      
+
+       
+    }
+
+
+    function text(d) {
+        let directions = ['Northerly', 'North Easterly', 'Easterly', 'South Easterly', 'Southerly', 'South Westerly', 'Westerly', 'North Westerly'];
+
+        d += 22.5;
+
+        if (d < 0)
+            d = 360 - Math.abs(d) % 360;
+        else
+            d = d % 360;
+
+        let w = parseInt(d / 45);
+        return `${directions[w]}`;
+    }
+
+
+
+var some = {
+  "coord": {"lon": -74.006, "lat": 40.7127},
+  "weather": [{"id": 741, "main": "Fog", "description": "fog", "icon": "50n"}],
+  "base": "stations",
+  "main": {"temp": 288.36, "feels_like": 288.23, "temp_min": 284.83, "temp_max": 290.13, "pressure": 1022, "humidity": 88},
+  "visibility": 10000,
+  "wind": {"speed": 4.12, "deg": 340},
+  "clouds": {"all": 0},
+  "dt": 1696155766,
+  "sys": {"type": 2, "id": 2008101, "country": "US", "sunrise": 1696157528, "sunset": 1696199954},
+  "timezone": -14400,
+  "id": 5128581,
+  "name": "New York",
+  "cod": 200
+};
+console.log(some)
+function timer(time){
+    var d = new Date((new Date().getTime()) - time * 1000);
+
+var options = {
+  weekday: 'short', // "Sun"
+  month: 'short',   // "Oct"
+  day: '2-digit',   // "01"
+  hour: '2-digit',  // "20"
+  minute: '2-digit', // "20"
+  timeZoneName: 'short', // "EST" or "EDT" depending on daylight saving time
+};
+
+var formattedDate = d.toLocaleString('en-US', options);
+
+ return formattedDate;
+}
+
+
+
+
+</script>

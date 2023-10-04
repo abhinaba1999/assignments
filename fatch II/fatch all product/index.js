@@ -3,6 +3,10 @@
  let form=document.querySelector("form");
  let search=document.getElementById("search")
  let url='https://fakestoreapi.com/products';
+
+
+
+
  async function fetch_data(url){
   let ele=await fetch(url)
   let data=await ele.json();
@@ -38,10 +42,7 @@ display.innerHTML=null;
                 fetch_data(`https://fakestoreapi.com/products/category/women's%20clothing`);
 
              }
-             
-        
-        
-      
+  
     }) 
 
 
