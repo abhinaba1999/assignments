@@ -1,0 +1,38 @@
+--What is react?
+ 
+React it is based on javascript.it helped to create complex website ui.
+
+
+--Who made react?
+
+React was created by Jordan walke. A software engineer in Facebook.
+
+--What is bable?
+
+Bable is a java script compiler. Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code.
+
+--How does Babel convert html code in React into valid code?
+
+Babel converts HTML code into valid code by using the JSX code and converter.
+
+--What is ReactDOM used for? Write an example?
+
+ReactDOM is used to render components and elements on the web.
+
+--What are the packages that you need to import for react to work with?
+
+To work with React, you need to import several packages and libraries. Like react , react dom etc.
+
+--How do you add react to a web application?
+In script tag in html or in js file we should import it.
+
+--What is React.createElement?
+It is basically use to create child tag and it’s content for rendering.
+
+--What are the three properties that createElement accept?
+
+We should pass an tag ,class or id and it’s innertext.
+
+--What is the meaning of render and root?
+
+Root is parent element it helped to append/render react element.
